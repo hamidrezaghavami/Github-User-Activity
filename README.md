@@ -1,36 +1,23 @@
-# Task Tracker CLI 📝
+# GitHub User Activity CLI
 
-A simple **Command-Line Task Tracker** built with **Node.js**.  
-This project is part of my learning journey from [roadmap.sh](https://roadmap.sh/projects/task-tracker).
+A simple Node.js CLI project that fetches and displays the recent activity of a GitHub user.  
+This project is based on the roadmap.sh challenge:  
+[Project URL: https://roadmap.sh/projects/github-user-activity](https://roadmap.sh/projects/github-user-activity)
 
-## 📌 Project Overview
-The Task Tracker CLI allows you to:
-- Add tasks
-- List tasks
-- Mark tasks as in progress or done
-- Delete tasks
-- Save tasks persistently to a local file (JSON)
+## Features
+- Fetches recent GitHub events of any user.
+- Sorts activity by date (newest first).
+- Displays commit history (Push events).
+- Uses only Node.js built-in `https` module (no external dependencies).
 
-It’s a great hands-on project for practicing Node.js, CLI development, and file system operations.
+## Usage
 
-## 🚀 How to Run
+### 1. Clone the repository
+git clone https://github.com/<your-username>/github-user-activity.git
+cd github-user-activity.
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/hamidrezaghavami/TaskTrackerCLI.js.git
-   cd TaskTrackerCLI.js
-
-  run the script: node TaskTrackerCLI.js
-  
-  Tech Stack
-	•	JavaScript (Node.js)
-	•	File System (fs) for data persistence
- 
- Learning Source
-
-This project is based on the Task Tracker project from roadmap.sh.
-
-📌 Status
-
-✅ Initial version completed
-🔄 Will improve as I learn more about Node.js and backend development
+run the script: node index.js
+By default, the script runs for the example user octocat.
+#### 2. change Username:
+getActivity("your-github-username");
+CommitHistory("your-github-username");
