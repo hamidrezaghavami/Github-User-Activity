@@ -1,0 +1,23 @@
+{
+  "name": "githubuseractivity",
+  "version": "1.0.0",
+  "description": "A simple github user activity CLI ",
+  "keywords": [
+    "nodejs"
+  ],
+  "homepage": "https://github.com/hamidrezaghavami/Github-User-Activity#readme",
+  "bugs": {
+    "url": "https://github.com/hamidrezaghavami/Github-User-Activity/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamidrezaghavami/Github-User-Activity.git"
+  },
+  "license": "MIT",
+  "author": "Hamid Reza Ghavami",
+  "type": "commonjs",
+  "main": "GithubUserActivity.js",
+  "scripts": {
+    "test": "jest"
+  }
+}
