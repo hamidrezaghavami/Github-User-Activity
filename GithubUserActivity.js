@@ -1,4 +1,4 @@
-import https from 'https';
+import fetch from 'node-fetch';
 
 // Function for sorting
 function SortingUserActivity (data) {
@@ -6,40 +6,39 @@ function SortingUserActivity (data) {
 }
 
 // Function for Displaying data
-function DisplayData (data) { 
+function DisplayData (data) {
   console.log(data);
 }
 
-// Function for getting user activity
-
-function getActivity(username) {
-  https.get(`https://api.github.com/users/${username}/events`, {
-    headers: { "User-Agent": "node.js" }
-  }, res => {
-    let data = "";
-    res.on("data", chunk => data += chunk);
-    res.on("end", () => {
-      const events = JSON.parse(data);
-      const sorted = SortingUserActivity(events);
-      DisplayData(sorted);
+// Function for getting user activity ( simplified 13 lines into 12 )
+async function getActivity(username) { 
+  try { 
+    const response = await fetch(`https://api.github.com/users/${username}/events`, {
+      headers: { "User-Agent": "node.js"}
     });
-  }).on("error", err => console.error(err));
+    if (!response.ok) throw new Error(`HTTP error!, Status: ${response.status}`);
+    const events = await response.json();
+    const sorted = SortingUserActivity(events);
+    DisplayData(sorted);
+  } catch (err) {
+    console.error("Failed to fetch user activity:", err.message);
+  }
 }
 
-// Function for commit history of repositories
-function CommitHistory(username) { 
-  https.get(`https://api.github.com/users/${username}/events`, {
-    headers: { "User-Agent": "node.js" }
-  }, res => { 
-    let data = ""; 
-    res.on("data", chunk => data += chunk);
-    res.on("end", () => { 
-      const events = JSON.parse(data);
-      const sorted = SortingUserActivity(events);
-      const commits = sorted.filter(event => event.type === "PushEvent");
-      DisplayData(commits);
+// Function for commit history of repositories ( simplified )
+async function CommitHistory(username) { 
+  try { 
+    const response = await fetch(`https://api.github.com/users/${username}/events`, {
+      headers: {"User-Agent": "node.js"}
     });
-  }) .on("error", err => console.error(err));
+    if (!response.ok) throw new Error(`HTTP error!, Status ${response.status}`);
+    const events = await response.json();
+    const sorted = SortingUserActivity(events);
+    const commits = sorted.filter(event => event.type === "PushEvent");
+    DisplayData(commits);
+  } catch (err) { 
+    console.error("Failed to fetch commits history:", err.message);
+  }
 }
 
 getActivity("octocat");
